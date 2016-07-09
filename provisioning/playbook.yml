@@ -93,23 +93,23 @@
       when: ansible_os_family == 'Debian'
 
     # Build makefile if configured.
-    - include: tasks/build-makefile.yml
-      when: build_makefile
+    #- include: tasks/build-makefile.yml
+    #  when: build_makefile
 
     # Build with composer if configured.
-    - include: tasks/build-composer.yml
-      when: build_composer
+    #- include: tasks/build-composer.yml
+    #  when: build_composer
 
     # Build a composer project if configured.
-    - include: tasks/build-composer-project.yml
-      when: build_composer_project
+    #- include: tasks/build-composer-project.yml
+    #  when: build_composer_project
 
     # Install site if configured.
-    - include: tasks/install-site.yml
-      when: install_site
+    #- include: tasks/install-site.yml
+    #  when: install_site
 
-    - include: tasks/drush-aliases.yml
-    - include: tasks/cron.yml
+    #- include: tasks/drush-aliases.yml
+    #- include: tasks/cron.yml
 
     - include: tasks/dashboard.yml
       when: dashboard_install_dir is defined and dashboard_install_dir != ''

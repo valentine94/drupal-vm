@@ -7,8 +7,8 @@ vagrant_synced_folder_default_type: nfs
 
 # If you need to run multiple instances of Drupal VM, set a unique hostname,
 # machine name, and IP address for each instance.
-vagrant_hostname: drupalvm.dev
-vagrant_machine_name: drupalvm
+vagrant_hostname: PROJECT_NAME.dev
+vagrant_machine_name: PROJECT_NAME-drupalvm
 vagrant_ip: 192.168.88.88
 
 # Allow Drupal VM to be accessed via a public network interface on your host.
@@ -23,17 +23,17 @@ vagrant_synced_folders:
   # The first synced folder will be used for the default Drupal installation, if
   # any of the build_* settings are 'true'. By default the folder is set to
   # the drupal-vm folder.
-  - local_path: .
-    destination: /var/www/drupalvm
+  - local_path: HOST_PATH_TO_PROJECT
+    destination: /var/www/docroot
     type: nfs
     create: true
 
 # Memory and CPU to use for this VM.
-vagrant_memory: 1024
+vagrant_memory: 2048
 vagrant_cpus: 2
 
 # The web server software to use. Can be either 'apache' or 'nginx'.
-drupalvm_webserver: apache
+drupalvm_webserver: nginx
 
 # Set this to 'false' if you are using a different site deployment strategy and
 # would like to configure 'vagrant_synced_folders' and 'apache_vhosts' manually.
@@ -56,7 +56,7 @@ drupal_composer_project_options: "--prefer-dist --stability dev --no-interaction
 
 # Set this to 'false' if you don't need to install drupal (using the drupal_*
 # settings below), but instead copy down a database (e.g. using drush sql-sync).
-install_site: true
+install_site: false
 
 # Required Drupal settings.
 drupal_core_path: "{{ drupal_composer_install_dir }}/web"
@@ -175,9 +175,9 @@ installed_extras:
   # - blackfire
   - drupalconsole
   - mailhog
-  # - memcached
+  - memcached
   # - newrelic
-  # - nodejs
+  - nodejs
   - pimpmylog
   # - redis
   # - ruby
@@ -194,7 +194,7 @@ extra_packages:
 # You can configure almost anything else on the server in the rest of this file.
 extra_security_enabled: false
 
-drush_version: "master"
+drush_version: "8.1.2"
 drush_keep_updated: true
 drush_composer_cli_options: "--prefer-dist --no-interaction"
 
@@ -214,7 +214,7 @@ firewall_log_dropped_packets: false
 # PHP Configuration. Currently-supported versions: 5.6, 7.0.
 # To use 5.6, see: http://docs.drupalvm.com/en/latest/other/php-56/
 php_version: "7.0"
-php_memory_limit: "192M"
+php_memory_limit: "512M"
 php_display_errors: "On"
 php_display_startup_errors: "On"
 php_realpath_cache_size: "1024K"
